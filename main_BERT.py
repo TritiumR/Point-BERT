@@ -1,5 +1,5 @@
 from tools import BERT_pretrain_run_net as pretrain
-from tools import BERT_finetune_run_net as finetune
+from tools import BERT_fewshot_run_net as fewshot
 from tools import BERT_test_run_net as test_net
 from utils import parser, dist_utils, misc
 from utils.logger import *
@@ -8,6 +8,7 @@ import time
 import os
 import torch
 from tensorboardX import SummaryWriter
+from argparse import ArgumentParser
 
 def main():
     # args
@@ -81,7 +82,7 @@ def main():
         test_net(args, config)
     else:
         if args.finetune_model or args.scratch_model:
-            finetune(args, config, train_writer, val_writer)
+            fewshot(args, config, train_writer, val_writer)
         else:
             pretrain(args, config, train_writer, val_writer)
 

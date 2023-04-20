@@ -68,6 +68,18 @@ def get_args():
         '--shot', type=int, default=-1)
     parser.add_argument(
         '--fold', type=int, default=-1)
+    parser.add_argument('--primact_type', type=str, help='the primact type')
+    parser.add_argument('--category_types', type=str,
+                             help='list all categories [Default: None, meaning all 10 categories]', default=None)
+    parser.add_argument('--data_dir_prefix', type=str)
+    parser.add_argument('--offline_data_dir', type=str)
+    parser.add_argument('--buffer_max_num', type=int)
+    parser.add_argument('--num_point_per_shape', type=int, default=10000)
+    parser.add_argument('--num_interaction_data_offline', type=int, default=24)
+    parser.add_argument('--sample_max_num', type=int, default=0)
+    parser.add_argument('--batch_size', type=int, default=32)
+    parser.add_argument('--epoch', type=int, default=40)
+    parser.add_argument('--no_true_false_equal', action='store_true')
     
     args = parser.parse_args()
 
