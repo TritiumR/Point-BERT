@@ -79,8 +79,9 @@ def get_args():
     parser.add_argument('--sample_max_num', type=int, default=0)
     parser.add_argument('--batch_size', type=int, default=32)
     parser.add_argument('--epoch', type=int, default=40)
+    parser.add_argument('--start_epoch', type=int, default=40)
     parser.add_argument('--no_true_false_equal', action='store_true')
-    
+
     args = parser.parse_args()
 
     if args.test and args.resume:
@@ -102,8 +103,6 @@ def get_args():
     if 'LOCAL_RANK' not in os.environ:
         os.environ['LOCAL_RANK'] = str(args.local_rank)
 
-    if args.test:
-        args.exp_name = 'test_' + args.exp_name
     if args.mode is not None:
         args.exp_name = args.exp_name + '_' +args.mode
     args.experiment_path = os.path.join('./experiments', Path(args.config).stem, Path(args.config).parent.stem, args.exp_name)

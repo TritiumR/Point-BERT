@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="162.105.162.212" id="959834d7-487f-4ef8-b008-e1f9cb3aeb2f" keyPath="$PROJECT_DIR$/../Desktop/course/前沿/董豪/id_rsa_212_new" port="22" nameFormat="DESCRIPTIVE" username="wuruihai" useOpenSSHConfig="true" />
+    </configs>
+  </component>
+</project>

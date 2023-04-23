@@ -1,6 +1,7 @@
 from tools import BERT_pretrain_run_net as pretrain
 from tools import BERT_fewshot_run_net as fewshot
 from tools import BERT_test_run_net as test_net
+from tools import BERT_fewshot_test_net as fewshot_test_net
 from utils import parser, dist_utils, misc
 from utils.logger import *
 from utils.config import *
@@ -79,7 +80,7 @@ def main():
         
     # run
     if args.test:
-        test_net(args, config)
+        fewshot_test_net(args, config)
     else:
         if args.finetune_model or args.scratch_model:
             fewshot(args, config, train_writer, val_writer)

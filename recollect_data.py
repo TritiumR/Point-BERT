@@ -8,13 +8,11 @@
         Given interaction <X, Y>, dirs1, dirs2
 """
 
-import osutils.py
-import sys
+import os
 import shutil
 import numpy as np
 from PIL import Image
-from aff_utils import get_global_position_from_camera, save_h5
-import cv2
+from aff_utils import save_h5
 import json
 from argparse import ArgumentParser
 
@@ -22,8 +20,6 @@ from sapien.core import Pose
 from env import Env, ContactError
 from camera import Camera
 from robots.panda_robot import Robot
-
-from subprocess import call
 
 parser = ArgumentParser()
 parser.add_argument('src_data_dir', type=str)
@@ -73,7 +69,7 @@ if not args.no_gui:
     env.set_controller_camera_pose(cam.pos[0], cam.pos[1], cam.pos[2], np.pi+cam_theta, -cam_phi)
 
 # load shape
-object_urdf_fn = '../data/where2act_original_sapien_dataset/%s/mobility_vhacd.urdf' % shape_id
+object_urdf_fn = './confidence_data/where2act_original_sapien_dataset/%s/mobility_vhacd.urdf' % shape_id
 flog.write('object_urdf_fn: %s\n' % object_urdf_fn)
 object_material = env.get_material(4, 4, 0.01)
 state = replay_data['object_state']
