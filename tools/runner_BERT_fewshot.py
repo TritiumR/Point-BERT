@@ -463,12 +463,12 @@ def test_net(args, config):
         precise = round(precise, 3)
         recall = round(recall, 3)
         F1 = round(F1, 3)
-        print('score from: ', conf.load_model + f'-{model_epoch}')
+        print('score from: ', args.exp_dir + f'-{model_epoch}')
         print('Score:  ', precise, '   ', recall, '   ', F1)
 
-        with open(os.path.join(conf.load_model, 'F1_score.txt'), 'a') as fout:
-            if model_epoch == conf.start_epoch:
-                fout.write(f'{conf.val_data_dir} Score: \n')
+        with open(os.path.join(args.exp_dir, 'F1_score.txt'), 'a') as fout:
+            if model_epoch == args.start_epoch:
+                fout.write(f'{args.offline_data_dir} Score: \n')
             fout.write(f'{model_epoch}   {precise}   {recall}   {F1}\n')
 
 
