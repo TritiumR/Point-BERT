@@ -81,6 +81,9 @@ def get_args():
     parser.add_argument('--epoch', type=int, default=40)
     parser.add_argument('--start_epoch', type=int, default=40)
     parser.add_argument('--no_true_false_equal', action='store_true')
+    parser.add_argument('--additional_data_dir', type=str, default=None)
+    parser.add_argument('--additional_category_types', type=str, help='data directory')
+    parser.add_argument('--additional_num_interaction', type=int, help='data directory')
 
     args = parser.parse_args()
 

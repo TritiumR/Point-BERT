@@ -1,16 +1,15 @@
-bash ./scripts/train_BERT.sh 3 \
+bash ./scripts/train_BERT.sh 0 \
     --config cfgs/ModelNet_models/PointTransformer_8192point.yaml \
-    --test \
+    --finetune_model \
     --ckpts ./Point-BERT.pth \
     --exp_name few-shot_pulling_all \
-    --num_interaction_data_offline 100 \
+    --num_interaction_data_offline 6 \
     --batch_size 16 \
     --num_point_per_shape 8192 \
-    --offline_data_dir ./confidence_data/gt_data-train_fixed_cam_new_new_test_data-pulling \
+    --offline_data_dir ./confidence_data/gt_data-train_fixed_cam_new_new_ruler_data-pulling \
     --category_types TrashCan,Refrigerator,WashingMachine,KitchenPot,Box,Microwave,Door,Table,Kettle,Bucket,Switch,StorageFurniture,Faucet,Window \
     --primact_type pulling \
-    --buffer_max_num 200000 \
-    --start_epoch 0 \
-    --no_true_false_equal \
+    --buffer_max_num 50000 \
     --epoch 20 \
+    --sample_max_num 140 \
     --data_dir_prefix ./confidence_data

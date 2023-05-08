@@ -62,7 +62,7 @@ class DataGen(object):
                 # print(f'save to {folder_name}')
                 job_name = '%s_%s_%d_%s_%s' % (todo[1], todo[2], todo[3], todo[4], todo[6])
             elif todo[0] == 'RECOLLECT':
-                cmd = 'xvfb-run -a python recollect_data.py %s %s %s --random_seed %d --no_gui --x %d --y %d --dir1 %s --dir2 %s --bias %d ' \
+                cmd = 'xvfb-run -a python recollect_data.py %s %s %s --random_seed %d --no_gui --x %d --y %d --dir1 %s --dir2 %s --bias %d > /dev/null 2>&1' \
                         % (todo[1], todo[2], todo[3], todo[4], todo[5], todo[6], todo[7], todo[8], todo[9])
                 folder_name = todo[3]
                 if todo[9] is not None:

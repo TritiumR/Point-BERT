@@ -98,9 +98,21 @@ def run_net(args, config, train_writer=None, val_writer=None):
 
     ruler_data_list = []
     for item in all_train_data_list:
-        if int(item.split('_')[-1]) < args.num_interaction_data_offline:
+        shape_id, category, _, _, trail_id = item.split('/')[-1].split('_')[-5:]
+        if int(trail_id) < args.num_interaction_data_offline and category in args.category_types:
             ruler_data_list.append(item)
     print('len(train_data_list): %d' % len(ruler_data_list))
+
+    add_data_list = []
+    if args.additional_data_dir is not None:
+        with open(os.path.join(args.additional_data_dir, 'data_tuple_list.txt'), 'r') as fin:
+            add_train_data_list = [os.path.join(args.additional_data_dir, l.rstrip()) for l in fin.readlines()]
+        for item in add_train_data_list:
+            shape_id, category, _, _, trail_id = item.split('/')[-1].split('_')[-5:]
+            if int(trail_id) < args.additional_num_interaction and category in args.additional_category_types:
+                print(shape_id, category, trail_id)
+                add_data_list.append(item)
+        print('len(add_data_list): %d' % len(add_data_list))
 
     # prepare data_dir
     if os.path.exists(args.data_dir):
@@ -121,7 +133,9 @@ def run_net(args, config, train_writer=None, val_writer=None):
 
     train_dataset = SAPIENVisionDataset([args.primact_type], args.category_types, data_features, args.buffer_max_num,
                                         abs_thres=0.01, rel_thres=0.5, dp_thres=0.5,
-                                        img_size=224, no_true_false_equal=args.no_true_false_equal)
+                                        img_size=224, no_true_false_equal=args.no_true_false_equal, additional_types=args.additional_category_types)
+
+    train_dataset.load_data(add_data_list)
 
     # create a data generator
     datagen = DataGen(10, None)
